@@ -17,7 +17,7 @@ const Navigation = () => {
 
     return (
 
-        <Navbar className="mt-2" bg="light" expand="lg" sticky-top>
+        <Navbar className="mt-3" bg="light" expand="lg" sticky="top" >
             <Container>
                 <Navbar.Brand href="#home">
                     <Image className="nav-logo" src="https://cdn.shopify.com/s/files/1/0366/2325/3549/files/logo.png?v=1585015777"></Image>
