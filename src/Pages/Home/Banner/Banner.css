@@ -1,0 +1,9 @@
+.banner-section{
+    background-image: url('https://cdn.shopify.com/s/files/1/0366/2325/3549/files/slideshow-v5-img1.jpg?v=1584612542');
+    background-size: cover;
+    height: 580px;
+}
+.banner-title{
+    font-size: 65px;
+    font-weight: 700;
+}
