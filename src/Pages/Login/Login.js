@@ -4,9 +4,10 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
 import { useHistory, useLocation } from 'react-router';
 import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { googleSignIn } = useAuth();
+    const { googleSignIn, handleUserLogin } = useAuth();
     const history = useHistory();
     const location = useLocation();
     const redirect_url = location?.state?.from || '/';
@@ -20,7 +21,9 @@ const Login = () => {
     }
 
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        handleUserLogin(data.email, data.password)
+    };
 
     return (
         <div>
@@ -37,6 +40,7 @@ const Login = () => {
                                 <input className="form-control btn btn-success" type="submit" value="Login" />
                             </form>
                             <Button className="mt-3" onClick={googleSignIN}>Google</Button>
+                            <p>New User? Please, <Link to="/register">Register</Link></p>
                         </div>
                     </Col>
                 </Row>

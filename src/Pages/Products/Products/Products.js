@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import Product from '../Home/Product/Product';
-import Navigation from '../Shared/Navigation/Navigation';
+import Product from '../../Home/Product/Product';
+import Navigation from '../../Shared/Navigation/Navigation';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('products.json')
+        fetch('http://localhost:5050/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data)

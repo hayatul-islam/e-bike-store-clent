@@ -9,7 +9,10 @@ import Home from './Pages/Home/Home/Home';
 import AuthProvider from './context/AuthProvider';
 import NotFound from './Pages/NotFound/NotFound';
 import Login from './Pages/Login/Login';
-import Products from './Pages/Products/Products';
+import Products from './Pages/Products/Products/Products';
+import BuyNow from './Pages/Products/BuyNow/BuyNow';
+import PrivateRoute from './Pages/Login/PrivateRoute';
+import Register from './Pages/Ragister/Register';
 
 
 function App() {
@@ -23,6 +26,14 @@ function App() {
 
           <Route exact path="/products">
             <Products />
+          </Route>
+
+          <PrivateRoute exact path="/buyNow/:productId">
+            <BuyNow />
+          </PrivateRoute>
+
+          <Route exact path="/register">
+            <Register />
           </Route>
 
           <Route exact path="/login">

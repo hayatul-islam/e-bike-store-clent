@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import firebaseInitializeApp from '../firebase/firebaseInitializeApp';
 
 firebaseInitializeApp()
@@ -18,6 +18,26 @@ const useFirebase = () => {
                 setIsLoading(false)
             })
     }
+
+    const handleUserRegister = (email, password) => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                console.log(result.user);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
+
+    const handleUserLogin = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                console.log(result.user);
+            })
+            .catch((error) => {
+
+            });
+    };
 
     useEffect(() => {
         onAuthStateChanged(auth, user => {
@@ -40,6 +60,8 @@ const useFirebase = () => {
         user,
         isLoading,
         googleSignIn,
+        handleUserRegister,
+        handleUserLogin,
         logOut
     }
 }
