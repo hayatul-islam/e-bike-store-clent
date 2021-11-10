@@ -9,6 +9,7 @@ import Home from './Pages/Home/Home/Home';
 import AuthProvider from './context/AuthProvider';
 import NotFound from './Pages/NotFound/NotFound';
 import Login from './Pages/Login/Login';
+import Products from './Pages/Products/Products';
 
 
 function App() {
@@ -18,6 +19,10 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+
+          <Route exact path="/products">
+            <Products />
           </Route>
 
           <Route exact path="/login">

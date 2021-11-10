@@ -26,7 +26,7 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto">
                         <NavLink activeClassName="nav-active" to="/">Home</NavLink>
-                        <NavLink activeClassName="nav-active" to="/about">About</NavLink>
+                        <NavLink activeClassName="nav-active" to="/products">Products</NavLink>
                     </Nav>
                     {
                         user?.email ? <Button className="btn btn-outline-dark" onClick={signOut}>Log out</Button> :
