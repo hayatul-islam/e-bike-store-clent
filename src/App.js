@@ -13,6 +13,7 @@ import Products from './Pages/Products/Products/Products';
 import BuyNow from './Pages/Products/BuyNow/BuyNow';
 import PrivateRoute from './Pages/Login/PrivateRoute';
 import Register from './Pages/Ragister/Register';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
 
           <Route exact path="/login">
             <Login />
+          </Route>
+
+          <Route exact path="/dashboard">
+            <Dashboard />
           </Route>
 
           <Route exact path="*">
