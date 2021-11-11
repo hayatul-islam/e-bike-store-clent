@@ -10,20 +10,27 @@ const Login = () => {
     const { googleSignIn, handleUserLogin } = useAuth();
     const history = useHistory();
     const location = useLocation();
-    const redirect_url = location?.state?.from || '/';
+    // const redirect_url = location?.state?.from || '/';
+    let { from } = location.state || { from: { pathname: "/" } };
+
 
     const googleSignIN = () => {
         googleSignIn()
             .then(result => {
-                history.push(redirect_url)
+                // history.push(redirect_url)
             })
 
     }
 
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => {
+    const onSubmit = (data) => {
         handleUserLogin(data.email, data.password)
+        redirectLocation()
     };
+
+    const redirectLocation = () => {
+        history.push(from)
+    }
 
     return (
         <div>

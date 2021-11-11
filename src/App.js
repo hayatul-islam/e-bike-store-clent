@@ -41,9 +41,9 @@ function App() {
             <Login />
           </Route>
 
-          <Route exact path="/dashboard">
+          <PrivateRoute exact path="/dashboard">
             <Dashboard />
-          </Route>
+          </PrivateRoute>
 
           <Route exact path="*">
             <NotFound />

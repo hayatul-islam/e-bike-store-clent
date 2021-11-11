@@ -20,23 +20,31 @@ const useFirebase = () => {
     }
 
     const handleUserRegister = (email, password) => {
+        setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 console.log(result.user);
             })
             .catch((error) => {
                 console.log(error.message);
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     };
 
     const handleUserLogin = (email, password) => {
+        setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 console.log(result.user);
             })
             .catch((error) => {
 
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     };
 
     useEffect(() => {

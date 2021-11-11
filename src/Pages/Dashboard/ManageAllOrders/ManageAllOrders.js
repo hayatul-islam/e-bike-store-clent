@@ -1,17 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
-import useAuth from '../../../hooks/useAuth';
 
 const MyOrders = () => {
-
-    const { user } = useAuth();
     const [allOrders, setAllOrders] = useState([]);
+
     useEffect(() => {
         fetch(`http://localhost:5050/allOrders`)
             .then(res => res.json())
             .then(data => setAllOrders(data))
-    }, [user?.email]);
+    }, [allOrders]);
 
     const handleCancel = id => {
         const process = window.confirm('Are You Sure?. You want to delete');
@@ -28,6 +26,22 @@ const MyOrders = () => {
         }
 
     }
+
+
+    const statusUpdate = id => {
+        const status = 'Shipped';
+        fetch(`http://localhost:5050/statusUpdate/${id}`, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ status }),
+        })
+            .then((res) => res.json())
+            .then((result) => console.log(result));
+    };
+
+
+
+
     return (
         <div>
             <h3>All orders</h3>
@@ -48,10 +62,16 @@ const MyOrders = () => {
                             <td>{order?.pdName}</td>
                             <td>{order.email}</td>
                             <td>
-                                {order.status}
+                                {
+                                    order?.status === 'Shipped' ?
+                                        <button disabled className="btn btn-success" onClick={() => statusUpdate(order?._id)}>{order?.status}</button>
+                                        :
+                                        <button className="btn btn-success" onClick={() => statusUpdate(order?._id)}>{order?.status}</button>
+                                }
+
                             </td>
                             <td>
-                                <button onClick={() => handleCancel(order._id)} className="btn btn-danger btn-sm">Cancel</button>
+                                <button onClick={() => handleCancel(order._id)} className="btn btn-danger btn-sm">Remove</button>
                             </td>
                         </tr>)
                     }
