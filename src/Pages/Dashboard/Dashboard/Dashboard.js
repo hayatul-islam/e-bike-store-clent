@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link,
-    NavLink,
 } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
 import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
@@ -15,10 +14,24 @@ import Review from '../Review/Review';
 import PrivateRoute from '../../Login/PrivateRoute'
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddNewProduct from '../AddNewProduct/AddNewProduct';
+import axios from 'axios';
 
 const Dashboard = () => {
 
     const { user } = useAuth();
+    const [admin, setAdmin] = useState(false);
+
+    useEffect(() => {
+        axios.get(`http://localhost:5050/checkAdmin/${user?.email}`)
+            .then(result => {
+                if (result.data[0].role === 'admin') {
+                    setAdmin(true)
+                } else {
+                    setAdmin(false)
+                }
+            })
+    }, [user?.email])
+
     return (
         <div className="py-5">
             <Container>
@@ -30,13 +43,17 @@ const Dashboard = () => {
                                 <Navbar.Toggle aria-controls="navbarScroll" />
                                 <Navbar.Collapse id="navbarScroll">
                                     <Nav className="flex-column">
-                                        <Link to="/">Home</Link>
+                                        <Link to="/dashboard"></Link>
                                         <Link to="/payment">Payment</Link>
                                         <Link to={`/myOrders/${user.email}`}>My Orders</Link>
                                         <Link to="/review">Review</Link>
-                                        <Link to="/manageAllOrders">Manage All Orders</Link>
-                                        <Link to="/addNewProduct">Add New Product</Link>
-                                        <Link to="/makeAdmin">Make Admin</Link>
+                                        {
+                                            admin && <>
+                                                <Link to="/manageAllOrders">Manage All Orders</Link>
+                                                <Link to="/addNewProduct">Add New Product</Link>
+                                                <Link to="/makeAdmin">Make Admin</Link>
+                                            </>
+                                        }
                                     </Nav>
                                 </Navbar.Collapse>
                             </Navbar>
@@ -44,8 +61,8 @@ const Dashboard = () => {
                         </Col>
                         <Col xs={9} md={10}>
                             <Switch>
-                                <Route exact path="/">
-
+                                <Route exact path="/dashboard">
+                                    <h2>tooo</h2>
                                 </Route>
                                 <Route path="/payment">
                                     <Payment />

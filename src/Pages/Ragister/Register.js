@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import { useHistory, useLocation } from 'react-router';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Register = () => {
@@ -18,8 +19,12 @@ const Register = () => {
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
+        const newUser = { email: data.email, name: data.name }
         handleUserRegister(data.email, data.password);
-        console.log(data);
+        axios.post('http://localhost:5050/addUsers', newUser)
+            .then(result => {
+                console.log(result.data);
+            })
     };
 
     return (
