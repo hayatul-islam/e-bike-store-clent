@@ -1,10 +1,11 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link,
+    NavLink,
 } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
 import MyOrders from '../MyOrders/MyOrders';
@@ -19,25 +20,22 @@ const Dashboard = () => {
             <Container>
                 <Row>
                     <Router>
-                        <Col xs={2}>
+                        <Col xs={3} md={2}>
                             <h2>Dashboard</h2>
-                            <ul>
-                                <li>
-                                    <Link to="/">Home</Link>
-                                </li>
-                                <li>
-                                    <Link to="/payment">Payment</Link>
-                                </li>
-                                <li>
-                                    <Link to={`/myOrders/${user.email}`}>My Orders</Link>
-                                </li>
-                                <li>
-                                    <Link to="/review">Review</Link>
-                                </li>
+                            <Navbar bg="light" expand="lg">
+                                <Navbar.Toggle aria-controls="navbarScroll" />
+                                <Navbar.Collapse id="navbarScroll">
+                                    <Nav className="flex-column">
+                                        <Link to="/">Home</Link>
+                                        <Link to="/payment">Payment</Link>
+                                        <Link to={`/myOrders/${user.email}`}>My Orders</Link>
+                                        <Link to="/review">Review</Link>
+                                    </Nav>
+                                </Navbar.Collapse>
+                            </Navbar>
 
-                            </ul>
                         </Col>
-                        <Col xs={10}>
+                        <Col xs={9} md={10}>
                             <Switch>
                                 <Route exact path="/">
 
