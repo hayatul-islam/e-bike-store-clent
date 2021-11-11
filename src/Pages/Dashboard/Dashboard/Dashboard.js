@@ -8,9 +8,13 @@ import {
     NavLink,
 } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
+import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
 import MyOrders from '../MyOrders/MyOrders';
 import Payment from '../Payment/Payment';
 import Review from '../Review/Review';
+import PrivateRoute from '../../Login/PrivateRoute'
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddNewProduct from '../AddNewProduct/AddNewProduct';
 
 const Dashboard = () => {
 
@@ -30,6 +34,9 @@ const Dashboard = () => {
                                         <Link to="/payment">Payment</Link>
                                         <Link to={`/myOrders/${user.email}`}>My Orders</Link>
                                         <Link to="/review">Review</Link>
+                                        <Link to="/manageAllOrders">Manage All Orders</Link>
+                                        <Link to="/addNewProduct">Add New Product</Link>
+                                        <Link to="/makeAdmin">Make Admin</Link>
                                     </Nav>
                                 </Navbar.Collapse>
                             </Navbar>
@@ -49,6 +56,16 @@ const Dashboard = () => {
                                 <Route path="/review">
                                     <Review />
                                 </Route>
+                                <Route path="/makeAdmin">
+                                    <MakeAdmin />
+                                </Route>
+                                <Route path="/addNewProduct">
+                                    <AddNewProduct />
+                                </Route>
+                                <PrivateRoute path="/manageAllOrders">
+                                    <ManageAllOrders />
+                                </PrivateRoute>
+
                             </Switch>
                         </Col>
                     </Router>
