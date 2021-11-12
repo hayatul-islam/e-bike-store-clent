@@ -12,17 +12,19 @@ const BuyNow = () => {
     const [product, setProduct] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5050/products/${productId}`)
+        fetch(`https://ancient-harbor-23487.herokuapp.com/products/${productId}`)
             .then(res => res.json())
             .then(data => setProduct(data))
-    }, [])
+    }, []);
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         data.status = 'Pending';
-        axios.post('http://localhost:5050/addOrder', data)
+        axios.post('https://ancient-harbor-23487.herokuapp.com/addOrder', data)
             .then(result => console.log(result))
     };
+
+    console.log(user);
 
     return (
         <div className="py-5">
@@ -43,7 +45,7 @@ const BuyNow = () => {
                             </Card.Body>
 
                             <form onSubmit={handleSubmit(onSubmit)}>
-                                <input className="form-control" {...register("name", { required: true })} value={user?.name} /> <br />
+                                <input className="form-control" {...register("name", { required: true })} value={user?.displayName} /> <br />
                                 <input className="form-control" {...register("email")} value={user?.email} /> <br />
                                 <input className="form-control" {...register("pdName")} value={product?.name} /> <br />
                                 <input className="form-control" {...register("address")} placeholder="Your address" /> <br />

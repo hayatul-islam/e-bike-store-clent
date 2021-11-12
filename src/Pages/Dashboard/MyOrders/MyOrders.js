@@ -8,7 +8,7 @@ const MyOrders = () => {
     const { user } = useAuth();
     const [myOrders, setMyOrders] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5050/myOrders/${user?.email}`)
+        fetch(`https://ancient-harbor-23487.herokuapp.com/myOrders/${user?.email}`)
             .then(res => res.json())
             .then(data => setMyOrders(data))
     }, [user?.email])
@@ -16,7 +16,7 @@ const MyOrders = () => {
     const handleCancel = id => {
         const process = window.confirm('Are You Sure?. You want to delete');
         if (process) {
-            axios.delete(`http://localhost:5050/delete/${id}`)
+            axios.delete(`https://ancient-harbor-23487.herokuapp.com/delete/${id}`)
                 .then(result => {
                     if (result.data.deletedCount) {
                         alert('Deleted successfully');

@@ -9,7 +9,7 @@ const Review = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         data.rating = rating;
-        axios.post('http://localhost:5050/review', data)
+        axios.post('https://ancient-harbor-23487.herokuapp.com/review', data)
             .then(result => {
                 if (result.data.insertedId) {
                     alert('Thanks you for a review');

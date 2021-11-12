@@ -8,7 +8,7 @@ const ManageProducts = () => {
     const { user } = useAuth();
     const [allProducts, setAllProducts] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5050/products`)
+        fetch(`https://ancient-harbor-23487.herokuapp.com/products`)
             .then(res => res.json())
             .then(data => setAllProducts(data))
     }, [])
@@ -16,7 +16,7 @@ const ManageProducts = () => {
     const handleCancel = id => {
         const process = window.confirm('Are You Sure?. You want to delete');
         if (process) {
-            axios.delete(`http://localhost:5050/products/${id}`)
+            axios.delete(`https://ancient-harbor-23487.herokuapp.com/products/${id}`)
                 .then(result => {
                     if (result.data.deletedCount) {
                         alert('Remove successfully');

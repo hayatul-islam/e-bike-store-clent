@@ -7,7 +7,7 @@ const MakeAdmin = () => {
     const onSubmit = data => {
         data.role = 'admin';
         const email = data.email;
-        axios.put(`http://localhost:5050/makeAdmin/${email}`, data)
+        axios.put(`https://ancient-harbor-23487.herokuapp.com/makeAdmin/${email}`, data)
             .then(result => {
                 console.log(result.data);
             })

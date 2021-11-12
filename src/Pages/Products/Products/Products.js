@@ -6,7 +6,7 @@ import Navigation from '../../Shared/Navigation/Navigation';
 const Products = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5050/products')
+        fetch('https://ancient-harbor-23487.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data)

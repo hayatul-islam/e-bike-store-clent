@@ -6,7 +6,7 @@ const MyOrders = () => {
     const [allOrders, setAllOrders] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5050/allOrders`)
+        fetch(`https://ancient-harbor-23487.herokuapp.com/allOrders`)
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [allOrders]);
@@ -14,7 +14,7 @@ const MyOrders = () => {
     const handleCancel = id => {
         const process = window.confirm('Are You Sure?. You want to delete');
         if (process) {
-            axios.delete(`http://localhost:5050/delete/${id}`)
+            axios.delete(`https://ancient-harbor-23487.herokuapp.com/delete/${id}`)
                 .then(result => {
                     if (result.data.deletedCount) {
                         alert('Deleted successfully');
@@ -30,7 +30,7 @@ const MyOrders = () => {
 
     const statusUpdate = id => {
         const status = 'Shipped';
-        fetch(`http://localhost:5050/statusUpdate/${id}`, {
+        fetch(`https://ancient-harbor-23487.herokuapp.com/statusUpdate/${id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ status }),

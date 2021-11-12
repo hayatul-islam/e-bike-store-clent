@@ -26,7 +26,7 @@ const Dashboard = () => {
     const history = useHistory();
 
     useEffect(() => {
-        axios.get(`http://localhost:5050/checkAdmin/${user?.email}`)
+        axios.get(`https://ancient-harbor-23487.herokuapp.com/checkAdmin/${user?.email}`)
             .then(result => {
                 if (result.data[0].role === 'admin') {
                     setAdmin(true)
