@@ -1,11 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
-import useAuth from '../../../hooks/useAuth';
+const Swal = require('sweetalert2')
 
 const ManageProducts = () => {
-
-    const { user } = useAuth();
     const [allProducts, setAllProducts] = useState([]);
     useEffect(() => {
         fetch(`https://ancient-harbor-23487.herokuapp.com/products`)
@@ -14,17 +12,32 @@ const ManageProducts = () => {
     }, [])
 
     const handleCancel = id => {
-        const process = window.confirm('Are You Sure?. You want to delete');
-        if (process) {
-            axios.delete(`https://ancient-harbor-23487.herokuapp.com/products/${id}`)
-                .then(result => {
-                    if (result.data.deletedCount) {
-                        alert('Remove successfully');
-                        const remain = allProducts.filter(product => product._id !== id);
-                        setAllProducts(remain)
-                    }
-                })
-        }
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`https://ancient-harbor-23487.herokuapp.com/products/${id}`)
+                    .then(result => {
+                        if (result.data.deletedCount) {
+
+                            const remain = allProducts.filter(product => product._id !== id);
+                            setAllProducts(remain)
+                        }
+                    })
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
 
     }
     return (

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
+const Swal = require('sweetalert2')
 
 const MyOrders = () => {
 
@@ -13,19 +14,33 @@ const MyOrders = () => {
             .then(data => setMyOrders(data))
     }, [user?.email])
 
-    const handleCancel = id => {
-        const process = window.confirm('Are You Sure?. You want to delete');
-        if (process) {
-            axios.delete(`https://ancient-harbor-23487.herokuapp.com/delete/${id}`)
-                .then(result => {
-                    if (result.data.deletedCount) {
-                        alert('Deleted successfully');
 
-                        const remain = myOrders.filter(order => order._id !== id);
-                        setMyOrders(remain)
-                    }
-                })
-        }
+    const handleCancel = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`https://ancient-harbor-23487.herokuapp.com/delete/${id}`)
+                    .then(result => {
+                        if (result.data.deletedCount) {
+                            const remain = myOrders.filter(order => order._id !== id);
+                            setMyOrders(remain)
+                        }
+                    })
+                Swal.fire(
+                    'Deleted!',
+                    'Your Order has been deleted.',
+                    'success'
+                )
+            }
+        })
 
     }
     return (

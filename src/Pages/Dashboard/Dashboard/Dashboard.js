@@ -51,6 +51,7 @@ const Dashboard = () => {
                 </div>
                 <Link to="/home">Back Home</Link>
                 <Row>
+
                     <Router>
                         <Col xs={3} md={2}>
                             <Navbar bg="light" expand="md">
@@ -58,7 +59,7 @@ const Dashboard = () => {
                                 <Navbar.Collapse id="navbarScroll">
                                     <Nav className="flex-column">
                                         <Link to="/dashboard"></Link>
-                                        <NavLink activeClassName="selected" to="/payment">Payment</NavLink>
+                                        <NavLink activeClassName="selected" to="/dashboard/payment">Payment</NavLink>
                                         <NavLink activeClassName="selected" to={`/myOrders/${user.email}`}>My Orders</NavLink>
                                         <NavLink activeClassName="selected" to="/review">Review</NavLink>
                                         {
@@ -81,9 +82,9 @@ const Dashboard = () => {
                                 <Route exact path="/dashboard">
                                     <h2>tooo</h2>
                                 </Route>
-                                <Route path="/payment">
+                                <PrivateRoute path="/dashboard/payment">
                                     <Payment />
-                                </Route>
+                                </PrivateRoute>
                                 <Route path="/myOrders/:email">
                                     <MyOrders />
                                 </Route>

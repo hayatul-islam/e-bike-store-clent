@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from "react-hook-form";
+const Swal = require('sweetalert2')
 
 const MakeAdmin = () => {
     const { register, handleSubmit } = useForm();
@@ -11,11 +12,23 @@ const MakeAdmin = () => {
             .then(result => {
                 console.log(result.data);
                 if (result.data.modifiedCount || result.data.upsertedCount) {
-                    alert('Add a new Admin, Successfully!')
+                    Swal.fire(
+                        'Successfully!',
+                        '',
+                        'success'
+                    )
                 } else if (result.data.matchedCount) {
-                    alert('Already Admin, Thank you.')
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Already Admin, Thank you.'
+                    })
                 } else {
                     alert('Something is wrang, Please try again!')
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+                    })
                 }
             })
     }

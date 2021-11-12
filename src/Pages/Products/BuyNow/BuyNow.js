@@ -5,6 +5,8 @@ import { useHistory, useParams } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import Navigation from '../../Shared/Navigation/Navigation';
 const axios = require('axios');
+const Swal = require('sweetalert2')
+
 
 const BuyNow = () => {
 
@@ -25,7 +27,11 @@ const BuyNow = () => {
         axios.post('https://ancient-harbor-23487.herokuapp.com/addOrder', data)
             .then(result => {
                 if (result.data.insertedId) {
-                    alert('Thank you, Your order done!')
+                    Swal.fire(
+                        'Successfully!',
+                        'Please Check your Email for your orders confirmation!',
+                        'success'
+                    )
                     history.push('/home')
                 }
             })
@@ -35,7 +41,7 @@ const BuyNow = () => {
         <div >
             <Navigation />
             <div className="py-5 bg-light">
-                <p className="text-center fw-bold  py-5">Home \ Products \ Buy now </p>
+                <p className="text-center fw-bold py-5">Home \ Products \ Buy now </p>
             </div>
             <Container>
                 {/* <h1 className="text-center fw-bold pt-5">Place Order</h1> */}

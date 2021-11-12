@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
+const Swal = require('sweetalert2')
 
 const MyOrders = () => {
     const [allOrders, setAllOrders] = useState([]);
@@ -12,18 +13,32 @@ const MyOrders = () => {
     }, [allOrders]);
 
     const handleCancel = id => {
-        const process = window.confirm('Are You Sure?. You want to delete');
-        if (process) {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
             axios.delete(`https://ancient-harbor-23487.herokuapp.com/delete/${id}`)
                 .then(result => {
                     if (result.data.deletedCount) {
-                        alert('Deleted successfully');
 
                         const remain = allOrders.filter(order => order._id !== id);
                         setAllOrders(remain)
                     }
                 })
-        }
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your Orders has been deleted.',
+                    'success'
+                )
+            }
+        })
 
     }
 
