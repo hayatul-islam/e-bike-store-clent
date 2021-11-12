@@ -7,19 +7,15 @@ import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { googleSignIn, handleUserLogin } = useAuth();
+    const { handleUserLogin } = useAuth();
     const history = useHistory();
     const location = useLocation();
-    const redirect_url = location?.state?.from || '/';
-    // let { from } = location.state || { from: { pathname: "/" } };
 
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        handleUserLogin(data.email, data.password)
-        history.replace(redirect_url)
+        handleUserLogin(data.email, data.password, location, history)
+
     };
-
-
 
     return (
         <div className="pt-2">

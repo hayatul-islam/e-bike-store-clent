@@ -13,19 +13,13 @@ const Register = () => {
     const { handleUserRegister } = useAuth();
     const history = useHistory();
     const location = useLocation();
-    const redirect_url = location?.state?.from || '/';
-
-
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         const newUser = { email: data.email, name: data.name }
-        handleUserRegister(data.email, data.password);
+        handleUserRegister(data.email, data.password, data.name, location, history);
         axios.post('https://ancient-harbor-23487.herokuapp.com/addUsers', newUser)
-            .then(result => {
-                console.log(result.data);
-                history.push(redirect_url)
-            })
+
     };
 
     return (

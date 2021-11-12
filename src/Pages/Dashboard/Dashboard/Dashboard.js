@@ -46,7 +46,9 @@ const Dashboard = () => {
     return (
         <div className="py-5">
             <Container>
-                <h2>Dashboard</h2>
+                <div className="bg-info py-1 px-3 mb-2">
+                    <h2>Dashboard</h2>
+                </div>
                 <Link to="/home">Back Home</Link>
                 <Row>
                     <Router>

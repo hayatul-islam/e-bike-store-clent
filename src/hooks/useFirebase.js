@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
 import firebaseInitializeApp from '../firebase/firebaseInitializeApp';
 
 firebaseInitializeApp()
@@ -8,6 +8,8 @@ const useFirebase = () => {
 
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+
+    console.log(user);
 
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -19,11 +21,25 @@ const useFirebase = () => {
             })
     }
 
-    const handleUserRegister = (email, password) => {
+    const handleUserRegister = (email, password, name, location, history) => {
+
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
 
+                const newUser = { email, displayName: name };
+                setUser(newUser);
+
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                }).catch((error) => {
+                });
+                // history.replace('/');
+
+
+                const redirect_url = location?.state?.from || '/';
+                history.replace(redirect_url)
             })
             .catch((error) => {
                 console.log(error.message);
@@ -34,11 +50,12 @@ const useFirebase = () => {
     };
 
 
-    const handleUserLogin = (email, password) => {
+    const handleUserLogin = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                console.log(result.user);
+                const redirect_url = location?.state?.from || '/';
+                history.replace(redirect_url)
             })
             .catch((error) => {
 
