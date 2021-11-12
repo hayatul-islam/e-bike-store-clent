@@ -13,6 +13,10 @@ nav a:hover{
     font-weight: bold;
 }
 
-.nav-active{
+.selected{
     font-weight: bold;
+}
+.login-btn:hover{
+    font-weight: bold;
+    color: black;
 }

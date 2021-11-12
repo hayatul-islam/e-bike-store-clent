@@ -18,8 +18,8 @@ const Reviews = () => {
             </div>
             <Row>
                 {
-                    reviews.map(review => <Col>
-                        <Card className="py-3">
+                    reviews.map(review => <Col xs={12} md={4}>
+                        <Card className="py-3 my-3">
                             <Card.Body>
                                 <RatingView ratingValue={review?.rating} /* RatingView Props */ />
 

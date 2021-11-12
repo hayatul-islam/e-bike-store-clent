@@ -5,7 +5,8 @@ import {
     Switch,
     Route,
     Link,
-    useHistory
+    useHistory,
+    NavLink
 } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
 import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
@@ -17,6 +18,7 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddNewProduct from '../AddNewProduct/AddNewProduct';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import axios from 'axios';
+import './Dashboard.css';
 
 
 const Dashboard = () => {
@@ -44,29 +46,29 @@ const Dashboard = () => {
     return (
         <div className="py-5">
             <Container>
+                <h2>Dashboard</h2>
+                <Link to="/home">Back Home</Link>
                 <Row>
-
                     <Router>
                         <Col xs={3} md={2}>
-                            <h2>Dashboard</h2>
-                            <Navbar bg="light" expand="lg">
+                            <Navbar bg="light" expand="md">
                                 <Navbar.Toggle aria-controls="navbarScroll" />
                                 <Navbar.Collapse id="navbarScroll">
                                     <Nav className="flex-column">
                                         <Link to="/dashboard"></Link>
-                                        <Link to="/payment">Payment</Link>
-                                        <Link to={`/myOrders/${user.email}`}>My Orders</Link>
-                                        <Link to="/review">Review</Link>
+                                        <NavLink activeClassName="selected" to="/payment">Payment</NavLink>
+                                        <NavLink activeClassName="selected" to={`/myOrders/${user.email}`}>My Orders</NavLink>
+                                        <NavLink activeClassName="selected" to="/review">Review</NavLink>
                                         {
                                             admin && <>
-                                                <Link to="/manageAllOrders">Manage All Orders</Link>
-                                                <Link to="/addNewProduct">Add New Product</Link>
-                                                <Link to="/makeAdmin">Make Admin</Link>
-                                                <Link to="/manageProducts">Manage Products</Link>
+                                                <NavLink activeClassName="selected" to="/manageAllOrders">Manage Orders</NavLink>
+                                                <NavLink activeClassName="selected" to="/addNewProduct">Add Product</NavLink>
+                                                <NavLink activeClassName="selected" to="/makeAdmin">Make Admin</NavLink>
+                                                <NavLink activeClassName="selected" to="/manageProducts">Manage Products</NavLink>
                                             </>
                                         }
 
-                                        <Button onClick={handleLogOut}>Log out</Button>
+                                        <Button className="px-5 rounded-pill my-2" variant="outline-info" onClick={handleLogOut}>Log out</Button>
                                     </Nav>
                                 </Navbar.Collapse>
                             </Navbar>

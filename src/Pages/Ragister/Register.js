@@ -29,14 +29,14 @@ const Register = () => {
     };
 
     return (
-        <div>
+        <div className="pt-2">
             <Navigation />
             <Container>
-                <Row>
+                <Row className="pt-3">
                     <Col md={2} lg={3}></Col>
                     <Col xs={12} md={8} lg={5}>
                         <div className="shadow px-3 py-4 mt-5">
-                            <h1 className="text-center pb-2">Register</h1>
+                            <h1 className="text-center pb-5 pt-3">Register</h1>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <input
                                     className="form-control  input-field"
@@ -54,7 +54,7 @@ const Register = () => {
                                     type="password" {...register("password")}
                                     placeholder="Password" /> <br />
                                 <input
-                                    className="form-control btn btn-success"
+                                    className="btn btn-success btn-lg px-5 rounded-pill"
                                     type="submit"
                                     value="Register" />
                             </form>

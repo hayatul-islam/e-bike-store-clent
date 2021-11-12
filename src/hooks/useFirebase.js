@@ -33,6 +33,7 @@ const useFirebase = () => {
             })
     };
 
+
     const handleUserLogin = (email, password) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)

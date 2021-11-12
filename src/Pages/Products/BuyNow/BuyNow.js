@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Container, Image, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import Navigation from '../../Shared/Navigation/Navigation';
 const axios = require('axios');
 
 const BuyNow = () => {
@@ -10,6 +11,7 @@ const BuyNow = () => {
     const { user } = useAuth();
     const { productId } = useParams();
     const [product, setProduct] = useState({});
+    const history = useHistory();
 
     useEffect(() => {
         fetch(`https://ancient-harbor-23487.herokuapp.com/products/${productId}`)
@@ -21,27 +23,34 @@ const BuyNow = () => {
     const onSubmit = data => {
         data.status = 'Pending';
         axios.post('https://ancient-harbor-23487.herokuapp.com/addOrder', data)
-            .then(result => console.log(result))
+            .then(result => {
+                if (result.data.insertedId) {
+                    alert('Thank you, Your order done!')
+                    history.push('/home')
+                }
+            })
     };
 
-    console.log(user);
-
     return (
-        <div className="py-5">
+        <div >
+            <Navigation />
+            <div className="py-5 bg-light">
+                <p className="text-center fw-bold  py-5">Home \ Products \ Buy now </p>
+            </div>
             <Container>
-                <h1 className="text-center fw-bold pb-5">Shop</h1>
-                <Row>
+                {/* <h1 className="text-center fw-bold pt-5">Place Order</h1> */}
+                <Row className="py-5">
                     <Col xs={12} md={6}>
                         <Image className="img-fluid" src={product?.img}></Image>
                     </Col>
                     <Col xs={12} md={6}>
                         <Card className="px-3 py-5 shadow">
                             <Card.Body>
-                                <Card.Title>{product?.name}</Card.Title>
+                                <Card.Title className="fs-2">{product?.name}</Card.Title>
                                 <Card.Text>
                                     {product?.des}
                                 </Card.Text>
-                                <Card.Title>Price: ${product?.price}</Card.Title>
+                                <Card.Title className="pt-3">Price: ${product?.price}</Card.Title>
                             </Card.Body>
 
                             <form onSubmit={handleSubmit(onSubmit)}>
@@ -50,7 +59,7 @@ const BuyNow = () => {
                                 <input className="form-control" {...register("pdName")} value={product?.name} /> <br />
                                 <input className="form-control" {...register("address")} placeholder="Your address" /> <br />
                                 <input className="form-control" type="number" {...register("phone")} placeholder="Your phone" /> <br />
-                                <input className="form-control" type="submit" />
+                                <input className="btn btn-success btn-lg px-5 rounded-pill" type="submit" value="Submit" />
                             </form>
                         </Card>
                     </Col>

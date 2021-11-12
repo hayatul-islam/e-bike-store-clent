@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Product from '../../Home/Product/Product';
 import Navigation from '../../Shared/Navigation/Navigation';
+import Footer from '../../Shared/Footer/Footer';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -13,18 +14,23 @@ const Products = () => {
             })
     }, [])
     return (
-        <div className="py-5">
-            <Navigation />
-            <Container>
-                <h1 className="text-center fw-bold text-uppercase py-5">This </h1>
-                <Row>
-                    {
-                        products.map(product => <Product
-                            product={product}
-                        ></Product>)
-                    }
-                </Row>
-            </Container>
+        <div>
+            <div className="py-5">
+                <Navigation />
+                <div className="py-5 bg-light mb-5">
+                    <p className="text-center fw-bold py-5">Home \ Products </p>
+                </div>
+                <Container>
+                    <Row>
+                        {
+                            products.map(product => <Product
+                                product={product}
+                            ></Product>)
+                        }
+                    </Row>
+                </Container>
+            </div>
+            <Footer />
         </div>
     );
 };

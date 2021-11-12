@@ -9,15 +9,12 @@ import './Navigation.css';
 const Navigation = () => {
 
     const { user, logOut } = useAuth();
-
     const signOut = () => {
         logOut()
     }
 
-
     return (
-
-        <Navbar className="mt-3" bg="light" expand="lg" sticky="top" >
+        <Navbar className="pt-2" bg="light" expand="lg" sticky="top" >
             <Container>
                 <Navbar.Brand href="#home">
                     <Image className="nav-logo" src="https://cdn.shopify.com/s/files/1/0366/2325/3549/files/logo.png?v=1585015777"></Image>
@@ -25,22 +22,21 @@ const Navigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto">
-                        <NavLink activeClassName="nav-active" to="/">Home</NavLink>
-                        <NavLink activeClassName="nav-active" to="/products">Products</NavLink>
+                        <NavLink activeClassName="selected" to="/home">Home</NavLink>
+                        <NavLink activeClassName="selected" to="/products">Products</NavLink>
                         {
-                            user?.email && <NavLink activeClassName="nav-active" to="/dashboard">Dashboard</NavLink>
+                            user?.email && <NavLink activeClassName="selected" to="/dashboard">Dashboard</NavLink>
                         }
                     </Nav>
                     {
-                        user?.email ? <Button className="btn btn-outline-dark" onClick={signOut}>Log out</Button> :
+                        user?.email ? <button className="btn btn-outline-info px-3 rounded-pill" onClick={signOut}>Log out</button> :
                             <NavLink to="/login">
-                                <Button className="btn btn-dark rounded-pill">Login</Button>
+                                <Button className="btn btn-light rounded-pill login-btn">Login/Register</Button>
                             </NavLink>
                     }
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-
     );
 };
 
