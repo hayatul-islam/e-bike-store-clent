@@ -30,23 +30,25 @@ const Review = () => {
         setRating(rate)
     }
     return (
-        <Container>
-            <Row>
-                <Col xs={12} lg={9}>
-                    <div className='shadow py-5 px-3'>
-                        <h3 className="text-center pb-5">Review</h3>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <input className="form-control" {...register("name", { required: true })} value={user?.displayName} /> <br />
-                            <textarea className="form-control" {...register("review", { required: true })} placeholder="Your Review" /> <br />
-                            <label htmlFor="">Rating</label> <br />
-                            <Rating onClick={handleRating} ratingValue={rating} /* Rating Props */ /> <br />
-                            <input className="btn btn-success btn-lg px-5 rounded-pill mt-4" type="submit" />
-                        </form>
+
+        <Row>
+            <Col xs={12} lg={9}>
+                <div className='shadow py-5 px-3'>
+                    <div className="text-center pb-5">
+                        <i className="fas fa-user-edit fs-2 text-success"></i>
+                        <h4>Users Feedback</h4>
                     </div>
-                </Col>
-                <Col lg={3}></Col>
-            </Row>
-        </Container>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <input className="form-control" {...register("name", { required: true })} value={user?.displayName} /> <br />
+                        <textarea className="form-control" {...register("review", { required: true })} placeholder="Your Review" /> <br />
+                        <label htmlFor="">Rating</label> <br />
+                        <Rating onClick={handleRating} ratingValue={rating} /* Rating Props */ /> <br />
+                        <input className="btn btn-success btn-lg px-5 rounded-pill mt-4" type="submit" />
+                    </form>
+                </div>
+            </Col>
+            <Col lg={3}></Col>
+        </Row>
     );
 };
 

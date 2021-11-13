@@ -46,14 +46,13 @@ const Dashboard = () => {
     return (
         <div className="py-5">
             <Container>
-                <div className="bg-info py-1 px-3 mb-2">
+                <div className="bg-light py-1 px-3 mb-2">
                     <h2>Dashboard</h2>
                 </div>
                 <Link to="/home">Back Home</Link>
                 <Row>
-
                     <Router>
-                        <Col xs={3} md={2}>
+                        <Col xs={12} md={2}>
                             <Navbar bg="light" expand="md">
                                 <Navbar.Toggle aria-controls="navbarScroll" />
                                 <Navbar.Collapse id="navbarScroll">
@@ -74,13 +73,13 @@ const Dashboard = () => {
                                             </>
                                         }
 
-                                        <Button className="px-5 rounded-pill my-2" variant="outline-info" onClick={handleLogOut}>Log out</Button>
+                                        <Button className="px-2 rounded-pill my-2" variant="outline-info" onClick={handleLogOut}>Log out</Button>
                                     </Nav>
                                 </Navbar.Collapse>
                             </Navbar>
 
                         </Col>
-                        <Col xs={9} md={10}>
+                        <Col xs={12} md={10}>
                             <Switch>
                                 <Route exact path="/dashboard">
                                     <h2>tooo</h2>

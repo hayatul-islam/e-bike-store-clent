@@ -15,7 +15,10 @@ const HighlightProducts = () => {
     return (
         <div className="py-5">
             <Container>
-                <h1 className="text-center fw-bold text-uppercase py-5">Best E-Bike</h1>
+                <h1 className="text-center text-uppercase pt-5">TOP TRENDING</h1>
+                <div className="d-flex justify-content-center pb-3">
+                    <hr style={{ width: '70px', height: '5px', marginTop: '0px', background: 'black' }} />
+                </div>
                 <Row>
                     {
                         products.map(product => <Product
@@ -23,6 +26,7 @@ const HighlightProducts = () => {
                         ></Product>)
                     }
                 </Row>
+
             </Container>
         </div>
     );

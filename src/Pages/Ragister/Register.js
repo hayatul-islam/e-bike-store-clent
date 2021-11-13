@@ -29,26 +29,30 @@ const Register = () => {
                 <Row className="pt-3">
                     <Col md={2} lg={3}></Col>
                     <Col xs={12} md={8} lg={5}>
-                        <div className="shadow px-3 py-4 mt-5">
-                            <h1 className="text-center pb-5 pt-3">Register</h1>
+                        <div className="shadow px-4 py-4 mt-5">
+                            <div className="text-center pb-5 pt-3">
+                                <i className="far fa-edit fs-3"></i>
+                                <h4 className="text-uppercase fw-normal pt-2">Register</h4>
+
+                            </div>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <input
                                     className="form-control  input-field"
                                     name="name"
                                     type="text" {...register("name")}
-                                    placeholder="Your Name" /> <br />
+                                    placeholder="Name" /> <br />
                                 <input
                                     className="form-control"
                                     name="email"
                                     type="email" {...register("email")}
-                                    placeholder="Your Email" /> <br />
+                                    placeholder="Email address" /> <br />
                                 <input
                                     className="form-control"
                                     name="password"
                                     type="password" {...register("password")}
                                     placeholder="Password" /> <br />
                                 <input
-                                    className="btn btn-success btn-lg px-5 rounded-pill"
+                                    className="btn btn-success btn-lg px-5 rounded-pill form-control"
                                     type="submit"
                                     value="Register" />
                             </form>

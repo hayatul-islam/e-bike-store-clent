@@ -44,7 +44,7 @@ const MyOrders = () => {
 
     }
     return (
-        <div>
+        <div style={{ overflow: 'scroll' }}>
             <h3>My orders</h3>
             <Table striped bordered hover>
                 <thead>
