@@ -45,26 +45,26 @@ const MyOrders = () => {
     }
     return (
         <div style={{ overflow: 'scroll' }}>
-            <h3>My orders</h3>
+            <h3 className="pb-3">My orders</h3>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th className="text-center">#</th>
                         <th>Product</th>
                         <th>Email</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th className="text-center">Status</th>
+                        <th className="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         myOrders.map((order, index) => <tr>
-                            <td>{index + 1}</td>
+                            <td className="text-center">{index + 1}</td>
                             <td>{order?.pdName}</td>
                             <td>{order.email}</td>
-                            <td>{order?.status}</td>
-                            <td>
-                                <button onClick={() => handleCancel(order._id)} className="btn btn-danger btn-sm">Cancel</button>
+                            <td className="text-center">{order?.status}</td>
+                            <td className="text-center">
+                                <button onClick={() => handleCancel(order._id)} className="btn btn-danger btn-sm"><i className="fas fa-trash"></i></button>
                             </td>
                         </tr>)
                     }

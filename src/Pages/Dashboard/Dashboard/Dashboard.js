@@ -52,7 +52,7 @@ const Dashboard = () => {
                     <Router>
                         <Col xs={12} md={2}>
                             <Navbar className="navbar-container" bg="light" expand="md">
-                                <Navbar.Brand href="#home">
+                                <Navbar.Brand>
                                     <h2>Dashboard</h2>
                                 </Navbar.Brand>
                                 <Navbar.Toggle aria-controls="navbarScroll" />
@@ -60,21 +60,21 @@ const Dashboard = () => {
                                     <Nav className="flex-column">
                                         <Link to="/dashboard"></Link>
                                         {!admin && <>
-                                            <NavLink activeClassName="selected" to="/dashboard/payment">Payment</NavLink>
-                                            <NavLink activeClassName="selected" to={`/dashboard/myOrders/${user.email}`}>My Orders</NavLink>
-                                            <NavLink activeClassName="selected" to="/dashboard/review">Review</NavLink>
+                                            <NavLink activeClassName="selected" to="/dashboard/payment"><i className="fas fa-file-invoice-dollar"></i> Payment</NavLink>
+                                            <NavLink activeClassName="selected" to={`/dashboard/myOrders/${user.email}`}><i className="fas fa-shopping-cart"></i> My Orders</NavLink>
+                                            <NavLink activeClassName="selected" to="/dashboard/review"><i className="far fa-sticky-note"></i> Review</NavLink>
                                         </>}
 
                                         {
                                             admin && <>
-                                                <NavLink activeClassName="selected" to="/dashboard/manageAllOrders">Manage Orders</NavLink>
-                                                <NavLink activeClassName="selected" to="/dashboard/addNewProduct">Add A Product</NavLink>
-                                                <NavLink activeClassName="selected" to="/dashboard/makeAdmin">Make Admin</NavLink>
-                                                <NavLink activeClassName="selected" to="/dashboard/manageProducts">Manage Products</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/manageAllOrders"><i className="fas fa-tasks"></i> Manage Orders</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/addNewProduct"><i className="far fa-share-square"></i> Add A Product</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/makeAdmin"><i className="fas fa-user-shield"></i> Make Admin</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/manageProducts"><i className="fas fa-align-justify"></i> Manage Products</NavLink>
                                             </>
                                         }
 
-                                        <Button className="px-2 rounded-pill my-2" variant="outline-info" onClick={handleLogOut}>Log out</Button>
+                                        <a onClick={handleLogOut}><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                     </Nav>
                                 </Navbar.Collapse>
                             </Navbar>
@@ -83,7 +83,10 @@ const Dashboard = () => {
                         <Col xs={12} md={10}>
                             <Switch>
                                 <Route exact path="/dashboard">
-                                    <h2>tooo</h2>
+                                    <div className="text-center pt-5">
+                                        <i style={{ fontSize: '70px' }} className="far fa-check-circle text-info"></i>
+                                        <h2 className="pt-3">Welcome to Your Dashboard!</h2>
+                                    </div>
                                 </Route>
                                 <PrivateRoute path="/dashboard/payment">
                                     <Payment />

@@ -42,7 +42,7 @@ const ManageProducts = () => {
     }
     return (
         <div style={{ overflow: 'scroll' }}>
-            <h3>Manage All Products</h3>
+            <h3 className="py-3">Manage All Products</h3>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -59,7 +59,7 @@ const ManageProducts = () => {
                             <td>{product?.name}</td>
                             <td className="text-center">{product.price}</td>
                             <td className="text-center">
-                                <button onClick={() => handleCancel(product._id)} className="btn btn-danger btn-sm">Remove</button>
+                                <button onClick={() => handleCancel(product._id)} className="btn btn-danger btn-sm"><i className="fas fa-trash"></i></button>
                             </td>
                         </tr>)
                     }

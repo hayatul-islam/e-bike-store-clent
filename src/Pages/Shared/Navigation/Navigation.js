@@ -32,9 +32,9 @@ const Navigation = () => {
                             <i className="fas fa-user-circle fs-4 text-info me-2"></i> {user?.displayName} </div>
                     }
                     {
-                        user?.email ? <button className="btn btn-outline-info px-3 rounded-pill" onClick={signOut}>Log out</button> :
+                        user?.email ? <a onClick={signOut}><i className="fas fa-sign-out-alt text-info"></i> Log out</a> :
                             <NavLink to="/login">
-                                Login/Register
+                                <i className="fas fa-sign-in-alt"></i> Login/Register
                             </NavLink>
                     }
                 </Navbar.Collapse>

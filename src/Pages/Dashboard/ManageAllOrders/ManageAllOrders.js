@@ -86,7 +86,7 @@ const MyOrders = () => {
 
                             </td>
                             <td className="text-center">
-                                <button onClick={() => handleCancel(order._id)} className="btn btn-danger btn-sm">Remove</button>
+                                <button onClick={() => handleCancel(order._id)} className="btn btn-danger btn-sm"><i className="fas fa-trash"></i></button>
                             </td>
                         </tr>)
                     }
