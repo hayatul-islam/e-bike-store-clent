@@ -29,9 +29,13 @@ const Navigation = () => {
                         }
                     </Nav>
                     {
+                        user?.displayName && <div className="d-flex align-items-center me-3">
+                            <i className="fas fa-user-circle fs-4 text-info me-2"></i> {user?.displayName} </div>
+                    }
+                    {
                         user?.email ? <button className="btn btn-outline-info px-3 rounded-pill" onClick={signOut}>Log out</button> :
                             <NavLink to="/login">
-                                <Button className="btn btn-light rounded-pill login-btn">Login/Register</Button>
+                                Login/Register
                             </NavLink>
                     }
                 </Navbar.Collapse>

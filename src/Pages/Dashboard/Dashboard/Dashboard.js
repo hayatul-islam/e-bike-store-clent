@@ -59,9 +59,12 @@ const Dashboard = () => {
                                 <Navbar.Collapse id="navbarScroll">
                                     <Nav className="flex-column">
                                         <Link to="/dashboard"></Link>
-                                        <NavLink activeClassName="selected" to="/dashboard/payment">Payment</NavLink>
-                                        <NavLink activeClassName="selected" to={`/myOrders/${user.email}`}>My Orders</NavLink>
-                                        <NavLink activeClassName="selected" to="/review">Review</NavLink>
+                                        {!admin && <>
+                                            <NavLink activeClassName="selected" to="/dashboard/payment">Payment</NavLink>
+                                            <NavLink activeClassName="selected" to={`/myOrders/${user.email}`}>My Orders</NavLink>
+                                            <NavLink activeClassName="selected" to="/review">Review</NavLink>
+                                        </>}
+
                                         {
                                             admin && <>
                                                 <NavLink activeClassName="selected" to="/manageAllOrders">Manage Orders</NavLink>

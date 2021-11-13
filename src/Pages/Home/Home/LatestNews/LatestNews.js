@@ -8,7 +8,7 @@ const LatestNews = () => {
                 <h1 className="text-center py-5">LATEST NEWS</h1>
                 <Row >
                     <Col xs={12} md={4}>
-                        <Card>
+                        <Card className="mb-4">
                             <Card.Img style={{ height: '250px' }} variant="top" src="https://preview.hasthemes.com/exporso-preview/exporso/assets/img/blog/4.jpg" />
                             <Card.Body>
                                 <Card.Title>Froome racing to spoil</Card.Title>
@@ -19,7 +19,7 @@ const LatestNews = () => {
                         </Card>
                     </Col>
                     <Col xs={12} md={4}>
-                        <Card>
+                        <Card className="mb-4">
                             <Card.Img style={{ height: '250px' }} variant="top" src="https://ridestyle.7uptheme.net/wp-content/uploads/2019/02//Ridestyles-Blog-11-370x200.jpg" />
                             <Card.Body>
                                 <Card.Title>Podium Cafe, for Cycling</Card.Title>
@@ -30,7 +30,7 @@ const LatestNews = () => {
                         </Card>
                     </Col>
                     <Col xs={12} md={4}>
-                        <Card>
+                        <Card className="mb-4">
                             <Card.Img style={{ height: '250px' }} variant="top" src="https://ridestyle.7uptheme.net/wp-content/uploads/2019/02//Ridestyles-Blog-12-370x200.jpg" />
                             <Card.Body>
                                 <Card.Title>Cycling Weekly Magazine</Card.Title>
