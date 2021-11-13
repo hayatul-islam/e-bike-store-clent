@@ -44,7 +44,6 @@ const BuyNow = () => {
                 <p className="text-center fw-bold py-5">Home \ Products \ Buy now </p>
             </div>
             <Container>
-                {/* <h1 className="text-center fw-bold pt-5">Place Order</h1> */}
                 <Row className="py-5">
                     <Col xs={12} md={6}>
                         <Image className="img-fluid" src={product?.img}></Image>

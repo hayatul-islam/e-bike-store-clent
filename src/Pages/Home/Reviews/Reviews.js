@@ -26,7 +26,7 @@ const Reviews = () => {
 
                 <Row>
                     {
-                        reviews.map(review => <Col xs={12} md={4}>
+                        reviews.map(review => <Col key={review?._id} xs={12} md={4}>
                             <Card className="py-3 my-3">
                                 <Card.Body>
                                     <RatingView ratingValue={review?.rating} /* RatingView Props */ />
@@ -35,7 +35,7 @@ const Reviews = () => {
                                         {review?.review}
                                     </Card.Text>
                                     <div className="d-flex align-items-center">
-                                        <i class="far fa-user-circle fs-1 me-2"></i>
+                                        <i className="far fa-user-circle fs-1 me-2"></i>
                                         <div className="ps-3">
                                             <Card.Title className="p-0 m-0 fw-bold">{review?.name}</Card.Title>
                                             <span className="p-0 m-0">CUSTOMER</span>

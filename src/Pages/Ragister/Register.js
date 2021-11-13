@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const Register = () => {
 
-    const { handleUserRegister } = useAuth();
+    const { handleUserRegister, error } = useAuth();
     const history = useHistory();
     const location = useLocation();
 
@@ -56,6 +56,7 @@ const Register = () => {
                                     type="submit"
                                     value="Register" />
                             </form>
+                            <p className="text-center pt-3 text-danger">{error}</p>
                             <p className="pt-4 text-center">I have Already Account. Please, <Link to="/login">Login</Link></p>
                         </div>
                     </Col>

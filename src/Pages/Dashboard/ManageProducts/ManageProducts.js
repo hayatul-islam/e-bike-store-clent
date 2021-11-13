@@ -42,7 +42,7 @@ const ManageProducts = () => {
     }
     return (
         <div style={{ overflow: 'scroll' }}>
-            <h3>My orders</h3>
+            <h3>Manage All Products</h3>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -54,7 +54,7 @@ const ManageProducts = () => {
                 </thead>
                 <tbody>
                     {
-                        allProducts.map((product, index) => <tr>
+                        allProducts.map((product, index) => <tr key={product?._id}>
                             <td className="text-center">{index + 1}</td>
                             <td>{product?.name}</td>
                             <td className="text-center">{product.price}</td>

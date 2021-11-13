@@ -59,24 +59,24 @@ const MyOrders = () => {
 
     return (
         <div style={{ overflow: 'scroll' }}>
-            <h3>All orders</h3>
+            <h3 className="py-4">Manage All Orders</h3>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th className="text-center">#</th>
                         <th>Product</th>
                         <th>Email</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th className="text-center">Status</th>
+                        <th className="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        allOrders.map((order, index) => <tr>
-                            <td>{index + 1}</td>
+                        allOrders.map((order, index) => <tr key={order?._id}>
+                            <td className="text-center">{index + 1}</td>
                             <td>{order?.pdName}</td>
                             <td>{order.email}</td>
-                            <td>
+                            <td className="text-center">
                                 {
                                     order?.status === 'Shipped' ?
                                         <button disabled className="btn btn-success" onClick={() => statusUpdate(order?._id)}>{order?.status}</button>
@@ -85,7 +85,7 @@ const MyOrders = () => {
                                 }
 
                             </td>
-                            <td>
+                            <td className="text-center">
                                 <button onClick={() => handleCancel(order._id)} className="btn btn-danger btn-sm">Remove</button>
                             </td>
                         </tr>)

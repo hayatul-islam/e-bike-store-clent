@@ -8,8 +8,7 @@ const useFirebase = () => {
 
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-
-    console.log(user);
+    const [error, setError] = useState('');
 
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -33,7 +32,9 @@ const useFirebase = () => {
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
+
                 }).catch((error) => {
+                    setError(error.message);
                 });
                 // history.replace('/');
 
@@ -42,7 +43,7 @@ const useFirebase = () => {
                 history.replace(redirect_url)
             })
             .catch((error) => {
-                console.log(error.message);
+                setError(error.message);
             })
             .finally(() => {
                 setIsLoading(false)
@@ -58,7 +59,7 @@ const useFirebase = () => {
                 history.replace(redirect_url)
             })
             .catch((error) => {
-
+                setError(error.message);
             })
             .finally(() => {
                 setIsLoading(false)
@@ -78,13 +79,14 @@ const useFirebase = () => {
         signOut(auth).then(() => {
             setUser({});
         }).catch((error) => {
-
+            setError(error.message);
         });
     }
 
     return {
         user,
         isLoading,
+        error,
         googleSignIn,
         handleUserRegister,
         handleUserLogin,

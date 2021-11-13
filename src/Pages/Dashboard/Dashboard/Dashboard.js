@@ -30,7 +30,7 @@ const Dashboard = () => {
     useEffect(() => {
         axios.get(`https://ancient-harbor-23487.herokuapp.com/checkAdmin/${user?.email}`)
             .then(result => {
-                if (result.data[0].role === 'admin') {
+                if (result.data[0]?.role === 'admin') {
                     setAdmin(true)
                 } else {
                     setAdmin(false)
@@ -46,30 +46,31 @@ const Dashboard = () => {
     return (
         <div className="py-5">
             <Container>
-                <div className="bg-light py-1 px-3 mb-2">
-                    <h2>Dashboard</h2>
-                </div>
-                <Link to="/home">Back Home</Link>
+
                 <Row>
+                    <Link to="/home">Back Home</Link>
                     <Router>
                         <Col xs={12} md={2}>
-                            <Navbar bg="light" expand="md">
+                            <Navbar className="navbar-container" bg="light" expand="md">
+                                <Navbar.Brand href="#home">
+                                    <h2>Dashboard</h2>
+                                </Navbar.Brand>
                                 <Navbar.Toggle aria-controls="navbarScroll" />
                                 <Navbar.Collapse id="navbarScroll">
                                     <Nav className="flex-column">
                                         <Link to="/dashboard"></Link>
                                         {!admin && <>
                                             <NavLink activeClassName="selected" to="/dashboard/payment">Payment</NavLink>
-                                            <NavLink activeClassName="selected" to={`/myOrders/${user.email}`}>My Orders</NavLink>
-                                            <NavLink activeClassName="selected" to="/review">Review</NavLink>
+                                            <NavLink activeClassName="selected" to={`/dashboard/myOrders/${user.email}`}>My Orders</NavLink>
+                                            <NavLink activeClassName="selected" to="/dashboard/review">Review</NavLink>
                                         </>}
 
                                         {
                                             admin && <>
-                                                <NavLink activeClassName="selected" to="/manageAllOrders">Manage Orders</NavLink>
-                                                <NavLink activeClassName="selected" to="/addNewProduct">Add Product</NavLink>
-                                                <NavLink activeClassName="selected" to="/makeAdmin">Make Admin</NavLink>
-                                                <NavLink activeClassName="selected" to="/manageProducts">Manage Products</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/manageAllOrders">Manage Orders</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/addNewProduct">Add A Product</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/makeAdmin">Make Admin</NavLink>
+                                                <NavLink activeClassName="selected" to="/dashboard/manageProducts">Manage Products</NavLink>
                                             </>
                                         }
 
@@ -87,22 +88,22 @@ const Dashboard = () => {
                                 <PrivateRoute path="/dashboard/payment">
                                     <Payment />
                                 </PrivateRoute>
-                                <Route path="/myOrders/:email">
+                                <PrivateRoute path="/dashboard/myOrders/:email">
                                     <MyOrders />
-                                </Route>
-                                <Route path="/review">
+                                </PrivateRoute>
+                                <Route path="/dashboard/review">
                                     <Review />
                                 </Route>
-                                <Route path="/makeAdmin">
+                                <Route path="/dashboard/makeAdmin">
                                     <MakeAdmin />
                                 </Route>
-                                <Route path="/addNewProduct">
+                                <Route path="/dashboard/addNewProduct">
                                     <AddNewProduct />
                                 </Route>
-                                <Route path="/manageProducts">
+                                <Route path="/dashboard/manageProducts">
                                     <ManageProducts />
                                 </Route>
-                                <PrivateRoute path="/manageAllOrders">
+                                <PrivateRoute path="/dashboard/manageAllOrders">
                                     <ManageAllOrders />
                                 </PrivateRoute>
                             </Switch>

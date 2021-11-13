@@ -22,6 +22,7 @@ const HighlightProducts = () => {
                 <Row>
                     {
                         products.map(product => <Product
+                            key={product?._id}
                             product={product}
                         ></Product>)
                     }

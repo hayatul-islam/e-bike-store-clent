@@ -1,15 +1,21 @@
 import axios from 'axios';
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
+const Swal = require('sweetalert2')
 
 const AddNewProduct = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         axios.post('https://ancient-harbor-23487.herokuapp.com/addProduct', data)
             .then(result => {
                 if (result.data.insertedId) {
-                    alert('Added a new product!')
+                    Swal.fire(
+                        'Successfully!',
+                        'Add a new Product!',
+                        'success'
+                    )
+                    reset()
                 }
             })
     }

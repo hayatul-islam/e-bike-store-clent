@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Rating } from 'react-simple-star-rating'
 import axios from 'axios';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
 const Swal = require('sweetalert2')
 
